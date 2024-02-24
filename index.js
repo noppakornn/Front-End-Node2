@@ -88,4 +88,6 @@ app.get('/delete/:id',async(req,res)=>{
   }
 });
 
-app.listen(5500,()=> console.log(`Listening on port 5500`))
+app.listen(5500, () => {
+    console.log(`Listening on port 5500`)
+});
