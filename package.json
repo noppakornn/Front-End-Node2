@@ -1,7 +1,7 @@
 {
   "name": "front-end-node2",
   "version": "1.0.0",
-  "description": "",
+  "description": "Front-End for the API Project Node.js",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
