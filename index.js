@@ -2,11 +2,11 @@
 // Description: Node.js HTML client
 // requires: npm install express ejs axios body-parser
 
-const express = require('express')
-const axios = require('axios')
+const express = require('express');
+const axios = require('axios');
 //const path = require('path')
-const app = express()
-var bodyParser = require('body-parser')
+const app = express();
+var bodyParser = require('body-parser');
 
 const base_url = "http://localhost:3000"
 //const base_url = "http://10.104.7.149"
