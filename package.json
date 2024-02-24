@@ -6,9 +6,17 @@
   "scripts": {
     "start": "node index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noppakornn/Front-End-Node2.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/noppakornn/Front-End-Node2/issues"
+  },
+  "homepage": "https://github.com/noppakornn/Front-End-Node2#readme",
   "dependencies": {
     "axios": "^1.6.7",
     "body-parser": "^1.20.2",
