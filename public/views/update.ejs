@@ -1,25 +1,24 @@
 <!-- update.ejs -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Update Book</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update movie</title>
     <link rel="stylesheet" href="../css/style.css" />
   </head>
   <body>
-    <h1>Update Book</h1>
-    <form method="post" action="/update/<%= book.id %>">
-      <label for="title">Title:</label>
-      <input type="text" id="title" name="title" value="<%= book.title %>" />
+    <h1>update movie</h1>
+    <form method="post" action="/update/<%= movie.movie_id %>">
+      <label for="movie_name">Names:</label>
+      <input type="text" id="movie_name" name="movie_name" value="<%= movie.movie_name %>" />
       <br />
-      <label for="author">Author:</label>
-      <input type="text" id="author" name="author" value="<%= book.author %>" />
+      <label for="genre">Types:</label>
+      <input type="text" id="genre" name="genre" value="<%= movie.genre %>" />
       <br />
       <input type="submit" value="Update" />
     </form>
-    <div class="link-center">
-      <a href="/book/<%= book.id %>">View</a>
-      <a href="/delete/<%= book.id %>">Delete</a>
-      <a href="/">Back to List</a>
-    </div>
+    <a href="/movie/<%= movie.id%>">View</a>
+    <a href="/delete/<%= movie.id%>">Delete</a>
+    <a href="/">Back to list</a>
   </body>
 </html>
