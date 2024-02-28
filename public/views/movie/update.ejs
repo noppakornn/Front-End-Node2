@@ -8,17 +8,17 @@
 </head>
 <body>
     <h1>update movie</h1>
-    <form method="post" action="/movie/update/<%= movie.movie_id %>">
-        <label for="movie_name" >movie_name:</label>
-        <input type="text" id="movie_name" name="movie_name" value="<%= movie.movie_name %>">
+    <form method="post" action="/table/update/<%= table.table_id %>">
+        <label for="capacity" >capacity:</label>
+        <input type="text" id="capacity" name="capacity" value="<%= table.capacity %>">
         <br>
-        <label for="genre">genre:</label>
-        <input type="text" id="genre" name="genre" value="<%= movie.genre %>">
+        <label for="status">status:</label>
+        <input type="text" id="status" name="status" value="<%= table.status %>">
         <br>
         <input type="submit" value="Update">
     </form>
-    <a href="/movie/<%= movie.id%>">View</a>
-    <a href="/movie/delete/<%= movie.id%>">Delete</a>
-    <a href="/movie">Back to list</a>
+    <a href="/table/<%= table.id%>">View</a>
+    <a href="/table/delete/<%= table.id%>">Delete</a>
+    <a href="/table">Back to list</a>
 </body>
 </html>
