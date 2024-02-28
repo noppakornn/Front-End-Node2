@@ -18,10 +18,10 @@ app.use(express.static(__dirname + '/public'))
 //1111111111111
 
 //ดูทั้งหมด
-app.get('/movie', async(req,res)=>{
+app.get('/table', async(req,res)=>{
    try{
-    const respones = await axios.get(base_url + '/movie')
-    res.render("movie/books",{movie:respones.data})
+    const respones = await axios.get(base_url + '/table')
+    res.render("table/books",{table:respones.data})
    }catch(err){
     console.error(err)
     res.status(500).send('Error')
@@ -30,10 +30,10 @@ app.get('/movie', async(req,res)=>{
 //ดูทั้งหมด
 
 //ดูแต่ละอัน
-app.get('/movie/:id',async(req,res)=>{
+app.get('/table/:id',async(req,res)=>{
     try{
-        const respones = await axios.get(base_url + '/movie/' + req.params.id)
-        res.render("movie/book",{movie:respones.data})
+        const respones = await axios.get(base_url + '/table/' + req.params.id)
+        res.render("table/book",{table:respones.data})
        }catch(err){
         console.error(err)
         res.status(500).send('Error')
@@ -42,15 +42,15 @@ app.get('/movie/:id',async(req,res)=>{
 //ดูแต่ละอัน
 
 // show create desktop
-app.get('/movi/create',(req,res)=>{ 
-    res.render("movie/create")
+app.get('/tabl/create',(req,res)=>{ 
+    res.render("table/create")
 })
 
-app.post('/movi/create',async(req,res)=>{
+app.post('/tabl/create',async(req,res)=>{
    try{
-    const data = { movie_name: req.body.movie_name , genre: req.body.genre}
-    await axios.post(base_url + '/movie' ,data)
-    res.redirect('/movie')
+    const data = { capacity: req.body.capacity , status: req.body.status}
+    await axios.post(base_url + '/table' ,data)
+    res.redirect('/table')
    }catch(err){
     console.error(err)
     res.status(500).send('Error')
@@ -59,22 +59,22 @@ app.post('/movi/create',async(req,res)=>{
 // show create desktop
 
 //update
-app.get('/movie/update/:id',async(req,res)=>{
+app.get('/table/update/:id',async(req,res)=>{
     try{
         const respones = await axios.get(
-            base_url + '/movie/' + req.params.id) 
-            res.render('movie/update',{movie: respones.data})
+            base_url + '/table/' + req.params.id) 
+            res.render('table/update',{table: respones.data})
   } catch(err){
       console.error(err)
       res.status(500).send('Error')
     }
 })
 
-app.post('/movie/update/:id',async(req,res)=>{
+app.post('/table/update/:id',async(req,res)=>{
    try{
-    const data = { movie_name: req.body.movie_name , genre: req.body.genre}
-    await axios.put(base_url + '/movie/' + req.params.id,data)
-    res.redirect('/movie')
+    const data = { capacity: req.body.capacity , status: req.body.status}
+    await axios.put(base_url + '/table/' + req.params.id,data)
+    res.redirect('/table')
    }catch(err){
     console.error(err)
     res.status(500).send('Error')
@@ -83,10 +83,10 @@ app.post('/movie/update/:id',async(req,res)=>{
 //update
 
 //delete
-app.get('/movi/delete/:id',async(req,res)=>{
+app.get('/tabl/delete/:id',async(req,res)=>{
    try{
-    await axios.delete(base_url + '/movie/' + req.params.id)
-    res.redirect('/movie')
+    await axios.delete(base_url + '/table/' + req.params.id)
+    res.redirect('/table')
    }catch(err){
     console.error(err)
     res.status(500).send('Error')
