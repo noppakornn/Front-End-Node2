@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>การจองโต๊ะอาหาร</title>
+    <link rel="stylesheet" href="../css/style.css"/>
+</head>
+<body>
+    <h1><%= reservation.date %></h1>
+    <p>time: <%= reservation.time %></p>
+    <a href="/reservation/update/<%= reservation.reservation_id %>">Edit</a>
+    <a href="/reservation/delete/<%= reservation.reservation_id %>">Delete</a>
+    <a href="/reservation">Back to List</a>
+</body>
+</html>

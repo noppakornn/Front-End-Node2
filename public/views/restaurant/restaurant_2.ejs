@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>การจองโต๊ะอาหาร</title>
+    <link rel="stylesheet" href="../css/style.css"/>
+</head>
+<body>
+    <h1>การจองโต๊ะอาหาร</h1>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Action</th>
+        </tr>
+        <% for(var i=0; i < restaurant.length; i++) { %>
+            <tr>
+                <td><%= restaurant[i].name %></td>
+                <td><%= restaurant[i].location %></td>
+                <td>
+                    <a href="/restaurant/<%= restaurant[i].restaurant_id %>">View</a>
+                    <a href="/restaurant/update/<%= restaurant[i].restaurant_id %>">Edit</a>
+                    <a href="/restaurant/delete/<%= restaurant[i].restaurant_id %>">Delete</a>
+                </td>
+            </tr>
+        <% } %>
+    </table>
+    <a href="/restaurants/create">Create New restaurant</a>
+</body>
+</html>

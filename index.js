@@ -3,6 +3,7 @@ const axios = require('axios')
 const path = require('path')
 const app = express()
 var bodyParser = require('body-parser')
+const { error } = require('console')
 
 const base_url = "http://localhost:3000"
 //const base_url = "http://10.104.7.149"
@@ -16,91 +17,11 @@ app.use(bodyParser.urlencoded({ extended:false}))
 app.use(express.static(__dirname + '/public'))
 
 //1111111111111
-
 //ดูทั้งหมด
-app.get('/table', async(req,res)=>{
-   try{
-    const respones = await axios.get(base_url + '/table')
-    res.render("table/books",{table:respones.data})
-   }catch(err){
-    console.error(err)
-    res.status(500).send('Error')
-   }
-})
-//ดูทั้งหมด
-
-//ดูแต่ละอัน
-app.get('/table/:id',async(req,res)=>{
+app.get('/restaurant', async(req,res)=>{
     try{
-        const respones = await axios.get(base_url + '/table/' + req.params.id)
-        res.render("table/book",{table:respones.data})
-       }catch(err){
-        console.error(err)
-        res.status(500).send('Error')
-       }
-})
-//ดูแต่ละอัน
-
-// show create desktop
-app.get('/tabl/create',(req,res)=>{ 
-    res.render("table/create")
-})
-
-app.post('/tabl/create',async(req,res)=>{
-   try{
-    const data = { capacity: req.body.capacity , status: req.body.status}
-    await axios.post(base_url + '/table' ,data)
-    res.redirect('/table')
-   }catch(err){
-    console.error(err)
-    res.status(500).send('Error')
-   }
-})
-// show create desktop
-
-//update
-app.get('/table/update/:id',async(req,res)=>{
-    try{
-        const respones = await axios.get(
-            base_url + '/table/' + req.params.id) 
-            res.render('table/update',{table: respones.data})
-  } catch(err){
-      console.error(err)
-      res.status(500).send('Error')
-    }
-})
-
-app.post('/table/update/:id',async(req,res)=>{
-   try{
-    const data = { capacity: req.body.capacity , status: req.body.status}
-    await axios.put(base_url + '/table/' + req.params.id,data)
-    res.redirect('/table')
-   }catch(err){
-    console.error(err)
-    res.status(500).send('Error')
-   }
-})
-//update
-
-//delete
-app.get('/tabl/delete/:id',async(req,res)=>{
-   try{
-    await axios.delete(base_url + '/table/' + req.params.id)
-    res.redirect('/table')
-   }catch(err){
-    console.error(err)
-    res.status(500).send('Error')
-   }
-})
-//delete
-
-//222222222222222
-
-//ดูทั้งหมด
-app.get('/user', async(req,res)=>{
-    try{
-     const respones = await axios.get(base_url + '/user')
-     res.render("user/bookss",{user:respones.data})
+     const respones = await axios.get(base_url + '/restaurant')
+     res.render("restaurant/restaurant_2",{restaurant:respones.data})
     }catch(err){
      console.error(err)
      res.status(500).send('Error')
@@ -109,10 +30,10 @@ app.get('/user', async(req,res)=>{
  //ดูทั้งหมด
  
  //ดูแต่ละอัน
- app.get('/user/:id',async(req,res)=>{
+ app.get('/restaurant/:id',async(req,res)=>{
      try{
-         const respones = await axios.get(base_url + '/user/' + req.params.id)
-         res.render("user/bookk",{user:respones.data})
+         const respones = await axios.get(base_url + '/restaurant/' + req.params.id)
+         res.render("restaurant/restaurant_1",{restaurant:respones.data})
         }catch(err){
          console.error(err)
          res.status(500).send('Error')
@@ -121,51 +42,51 @@ app.get('/user', async(req,res)=>{
  //ดูแต่ละอัน
  
  // show create desktop
- app.get('/use/create',(req,res)=>{ 
-     res.render("user/create")
+ //use คือ user ที่ลบตัวท้ายไปตัวนึง
+ app.get('/restaurants/create',(req,res)=>{ 
+     res.render("restaurant/create")
  })
- 
- app.post('/use/create',async(req,res)=>{
+ //use คือ user ที่ลบตัวท้ายไปตัวนึง
+ app.post('/restaurants/create',async(req,res)=>{
     try{
-     const data = { username: req.body.username , email: req.body.email}
-     await axios.post(base_url + '/user' ,data)
-     res.redirect('/user')
+     const data = { name: req.body.name , location: req.body.location}
+     await axios.post(base_url + '/restaurant' ,data)
+     res.redirect('/restaurant')
     }catch(err){
-     console.error(err)
-     res.status(500).send('Error')
+     res.status(500).send(err)
     }
  })
  // show create desktop
  
  //update
- app.get('/user/update/:id',async(req,res)=>{
+ app.get('/restaurant/update/:id',async(req,res)=>{
      try{
          const respones = await axios.get(
-             base_url + '/user/' + req.params.id) 
-             res.render('user/update',{user: respones.data})
+             base_url + '/restaurant/' + req.params.id) 
+             res.render('restaurant/update',{restaurant: respones.data})
    } catch(err){
        console.error(err)
        res.status(500).send('Error')
      }
  })
  
- app.post('/user/update/:id',async(req,res)=>{
+ app.post('/restaurant/update/:id',async(req,res)=>{
     try{
-        const data = { username: req.body.username , email: req.body.email}
-     await axios.put(base_url + '/user/' + req.params.id,data)
-     res.redirect('/user')
+        const data = { name: req.body.name , location: req.body.location}
+     await axios.put(base_url + '/restaurant/' + req.params.id,data)
+     res.redirect('/restaurant')
     }catch(err){
      console.error(err)
-     res.status(500).send('Error')
+     res.status(500).send(err)
     }
  })
  //update
  
- //delete
- app.get('/use/delete/:id',async(req,res)=>{
+ //use คือ user ที่ลบตัวท้ายไปตัวนึง
+ app.get('/restaurant/delete/:id',async(req,res)=>{
     try{
-     await axios.delete(base_url + '/user/' + req.params.id)
-     res.redirect('/user')
+     await axios.delete(base_url + '/restaurant/' + req.params.id)
+     res.redirect('/restaurant')
     }catch(err){
      console.error(err)
      res.status(500).send('Error')
@@ -175,7 +96,7 @@ app.get('/user', async(req,res)=>{
 
  //333333333333333333333
 
-//ดูทั้งหมด
+/*//ดูทั้งหมด
 app.get('/showtime', async(req,res)=>{
     try{
      const respones = await axios.get(base_url + '/showtime')
@@ -329,6 +250,6 @@ app.get('/Reservation', async(req,res)=>{
      res.status(500).send('Error')
     }
  })
- //delete
+ //delete */
 
 app.listen(5500,()=> console.log(`Listening on port 5500`)) //เอาไว้บรรทัดสุดท้ายห้ามยุ่ง
