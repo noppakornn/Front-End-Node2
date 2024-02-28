@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation</title>
+    <link rel="stylesheet" href="../css/style.css"/>
+
+</head>
+<body>
+    <h1>Reservation</h1>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>email</th>
+            <th>Action</th>
+        </tr>
+        <% for(var i=0; i < Reservation.length; i++) { %>
+            <tr>
+                <td><%= Reservation[i].Reservation_id %></td>
+                <td><%= Reservation[i].Reservation_Date_Time %></td>
+                <td>
+                    <a href="/Reservation/<%= Reservation[i].Reservation %>">View</a>
+                    <a href="/Reservation/update/<%= Reservation[i].Reservation %>">Edit</a>
+                    <a href="/Reservatio/delete/<%= Reservation[i].Reservation %>">Delete</a>
+                </td>
+            </tr>
+        <% } %>
+    </table>
+    <a href="/Reservatio/create">Create New user</a>
+</body>
+</html>

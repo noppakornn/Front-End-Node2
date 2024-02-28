@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>show time</title>
+    <link rel="stylesheet" href="../css/style.css"/>
+
+</head>
+<body>
+    <h1>showtime</h1>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Time</th>
+            <th>Theater</th>
+        </tr>
+        <% for(var i=0; i < showtime.length; i++) { %>
+            <tr>
+                <td><%= showtime[i].starttime %></td>
+                <td><%= showtime[i].theater %></td>
+                <td>
+                    <a href="/showtime/<%= showtime[i].showtime_id %>">View</a>
+                    <a href="/showtime/update/<%= showtime[i].showtime_id %>">Edit</a>
+                    <a href="/showtim/delete/<%= showtime[i].showtime_id %>">Delete</a>
+                </td>
+            </tr>
+        <% } %>
+    </table>
+    <a href="showtim/create">Create New user</a>
+</body>
+</html>

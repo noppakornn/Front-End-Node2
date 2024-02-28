@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update movie</title>
+    <link rel="stylesheet" href="../../css/style.css"/>
+
+</head>
+<body>
+    <h1>update movie</h1>
+    <form method="post" action="/movie/update/<%= movie.movie_id %>">
+        <label for="movie_name" >movie_name:</label>
+        <input type="text" id="movie_name" name="movie_name" value="<%= movie.movie_name %>">
+        <br>
+        <label for="genre">genre:</label>
+        <input type="text" id="genre" name="genre" value="<%= movie.genre %>">
+        <br>
+        <input type="submit" value="Update">
+    </form>
+    <a href="/movie/<%= movie.id%>">View</a>
+    <a href="/movie/delete/<%= movie.id%>">Delete</a>
+    <a href="/movie">Back to list</a>
+</body>
+</html>
