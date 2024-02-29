@@ -10,22 +10,19 @@
     <h1>การจองโต๊ะอาหาร</h1>
     <table>
         <tr>
-            <th>Name</th>
-            <th>Location</th>
+            <th>ชื่อร้าน</th>
+            <th>พิกัดร้าน</th>
             <th>Action</th>
         </tr>
         <% for(var i=0; i < restaurant.length; i++) { %>
             <tr>
-                <td><%= restaurant[i].name %></td>
-                <td><%= restaurant[i].location %></td>
+                <td><%= restaurant[i].nameres %></td>
+                <td><%= restaurant[i].address %></td>
                 <td>
-                    <a href="/restaurant/<%= restaurant[i].restaurant_id %>">View</a>
-                    <a href="/restaurant/update/<%= restaurant[i].restaurant_id %>">Edit</a>
-                    <a href="/restaurant/delete/<%= restaurant[i].restaurant_id %>">Delete</a>
+                    <a href="/restaurant/<%= restaurant[i].restaurant_id %>">ดูรายละเอียด</a>
                 </td>
             </tr>
         <% } %>
     </table>
-    <a href="/restaurants/create">Create New restaurant</a>
 </body>
 </html>

@@ -3,14 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>การจองโต๊ะอาหาร</title>
-    <link rel="stylesheet" href="../css/style.css"/>
+    <title>รายละเอียดของร้าน</title>
+    <link rel="stylesheet" href="../css/stylex.css"/>
 </head>
 <body>
-    <h1><%= restaurant.name %></h1>
-    <p>Location: <%= restaurant.location %></p>
-    <a href="/restaurant/update/<%= restaurant.restaurant_id %>">Edit</a>
-    <a href="/restaurant/delete/<%= restaurant.restaurant_id %>">Delete</a>
-    <a href="/restaurant">Back to List</a>
+    <div class="container">
+        <h1>รายละเอียดของร้าน <%= restaurant.nameres %></h1>
+        <div class="restaurant-details">
+            <h2><%= restaurant.names %></h2>
+            <p><strong>พิกัดร้าน: </strong> <%= restaurant.address %></p>
+            <p><strong>เวลาเปิด-ปิด: </strong> <%= restaurant.opening_hours %></p>
+            <p><strong>ข้อมูลเพิ่มเติม: </strong> <%= restaurant.additional_info %></p>
+        </div>
+        <a href="/reservation" class="back-btn">Book Now</a>
+    </div>
 </body>
 </html>

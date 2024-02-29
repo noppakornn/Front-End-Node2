@@ -1,0 +1,73 @@
+/* ขอบกรอบของแบบฟอร์ม */
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* ส่วนหัวเรื่องของแบบฟอร์ม */
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* รายการข้อมูลในแบบฟอร์ม */
+  div {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="date"],
+  input[type="time"],
+  input[type="number"],
+  textarea {
+    width: calc(100% - 10px);
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  textarea {
+    height: 100px;
+  }
+  
+  button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center; /* เพิ่มคุณสมบัติ text-align: center; เพื่อจัดตำแหน่งปุ่มตรงกลาง */
+    display: block; /* เพิ่มคุณสมบัติ display: block; เพื่อให้ปุ่มเต็มความกว้าง */
+    margin: 0 auto; /* ใช้ margin: 0 auto; เพื่อจัดให้ปุ่มอยู่ตรงกลางของแบบฟอร์ม */
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  
+  a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  

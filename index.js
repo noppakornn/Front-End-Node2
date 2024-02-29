@@ -16,7 +16,6 @@ app.use(bodyParser.urlencoded({ extended:false}))
 
 app.use(express.static(__dirname + '/public'))
 
-//1111111111111
 //ดูทั้งหมด
 app.get('/restaurant', async(req,res)=>{
     try{
@@ -42,14 +41,13 @@ app.get('/restaurant', async(req,res)=>{
  //ดูแต่ละอัน
  
  // show create desktop
- //use คือ user ที่ลบตัวท้ายไปตัวนึง
  app.get('/restaurants/create',(req,res)=>{ 
      res.render("restaurant/create")
  })
- //use คือ user ที่ลบตัวท้ายไปตัวนึง
+
  app.post('/restaurants/create',async(req,res)=>{
     try{
-     const data = { name: req.body.name , location: req.body.location}
+     const data = { nameres: req.body.nameres , address: req.body.address , opening_hours: req.body.opening_hours , additional_info: req.body.additional_info}
      await axios.post(base_url + '/restaurant' ,data)
      res.redirect('/restaurant')
     }catch(err){
@@ -58,7 +56,6 @@ app.get('/restaurant', async(req,res)=>{
  })
  // show create desktop
  
- //update
  app.get('/restaurant/update/:id',async(req,res)=>{
      try{
          const respones = await axios.get(
@@ -69,10 +66,11 @@ app.get('/restaurant', async(req,res)=>{
        res.status(500).send('Error')
      }
  })
+  //update
  
  app.post('/restaurant/update/:id',async(req,res)=>{
     try{
-        const data = { name: req.body.name , location: req.body.location}
+        const data = { nameres: req.body.nameres , address: req.body.address , opening_hours: req.body.opening_hours , additional_info: req.body.additional_info}
      await axios.put(base_url + '/restaurant/' + req.params.id,data)
      res.redirect('/restaurant')
     }catch(err){
@@ -82,7 +80,6 @@ app.get('/restaurant', async(req,res)=>{
  })
  //update
  
- //use คือ user ที่ลบตัวท้ายไปตัวนึง
  app.get('/restaurant/delete/:id',async(req,res)=>{
     try{
      await axios.delete(base_url + '/restaurant/' + req.params.id)
@@ -94,13 +91,10 @@ app.get('/restaurant', async(req,res)=>{
  })
  //delete
 
- //333333333333333333333
-
-/*//ดูทั้งหมด
-app.get('/showtime', async(req,res)=>{
+ app.get('/reservation', async(req,res)=>{
     try{
-     const respones = await axios.get(base_url + '/showtime')
-     res.render("showtime/bookssss",{showtime:respones.data})
+     const respones = await axios.get(base_url + '/reservation')
+     res.render("reservation/reservation_2",{reservation:respones.data})
     }catch(err){
      console.error(err)
      res.status(500).send('Error')
@@ -109,10 +103,10 @@ app.get('/showtime', async(req,res)=>{
  //ดูทั้งหมด
  
  //ดูแต่ละอัน
- app.get('/showtime/:id',async(req,res)=>{
+ app.get('/reservation/:id',async(req,res)=>{
      try{
-         const respones = await axios.get(base_url + '/showtime/' + req.params.id)
-         res.render("showtime/bookkkk",{showtime:respones.data})
+         const respones = await axios.get(base_url + '/reservation/' + req.params.id)
+         res.render("reservation/reservation_1",{reservation:respones.data})
         }catch(err){
          console.error(err)
          res.status(500).send('Error')
@@ -121,51 +115,49 @@ app.get('/showtime', async(req,res)=>{
  //ดูแต่ละอัน
  
  // show create desktop
- app.get('/showtim/create',(req,res)=>{ 
-     res.render("showtime/create")
+ app.get('/reservations/create',(req,res)=>{ 
+     res.render("reservation/create")
  })
- 
- app.post('/showtim/create',async(req,res)=>{
+
+ app.post('/reservations/create',async(req,res)=>{
     try{
-     const data = { starttime: req.body.starttime , theater: req.body.theater}
-     await axios.post(base_url + '/showtime' ,data)
-     res.redirect('/showtime')
+     const data = { name: req.body.name , email: req.body.email , date: req.body.date , time: req.body.time , capacity: req.body.capacity}
+     await axios.post(base_url + '/reservation' ,data)
+     res.redirect('/reservation')
     }catch(err){
-     console.error(err)
-     res.status(500).send('Error')
+     res.status(500).send(err)
     }
  })
  // show create desktop
  
- //update
- app.get('/showtime/update/:id',async(req,res)=>{
+ app.get('/reservation/update/:id',async(req,res)=>{
      try{
          const respones = await axios.get(
-             base_url + '/showtime/' + req.params.id) 
-             res.render('showtime/update',{showtime: respones.data})
+             base_url + '/reservation/' + req.params.id) 
+             res.render('reservation/update',{reservation: respones.data})
    } catch(err){
        console.error(err)
        res.status(500).send('Error')
      }
  })
+  //update
  
- app.post('/showtime/update/:id',async(req,res)=>{
+ app.post('/reservation/update/:id',async(req,res)=>{
     try{
-        const data = { starttime: req.body.starttime , theater: req.body.theater}
-     await axios.put(base_url + '/showtime/' + req.params.id,data)
-     res.redirect('/showtime')
+        const data = { name: req.body.name , email: req.body.email , date: req.body.date , time: req.body.time , capacity: req.body.capacity}
+     await axios.put(base_url + '/reservation/' + req.params.id,data)
+     res.redirect('/reservation')
     }catch(err){
      console.error(err)
-     res.status(500).send('Error')
+     res.status(500).send(err)
     }
  })
  //update
  
- //delete
- app.get('/showtim/delete/:id',async(req,res)=>{
+ app.get('/reservation/delete/:id',async(req,res)=>{
     try{
-     await axios.delete(base_url + '/showtime/' + req.params.id)
-     res.redirect('/showtime')
+     await axios.delete(base_url + '/reservation/' + req.params.id)
+     res.redirect('/reservation')
     }catch(err){
      console.error(err)
      res.status(500).send('Error')
@@ -173,83 +165,4 @@ app.get('/showtime', async(req,res)=>{
  })
  //delete
 
-  //44444444444444444444
-
-//ดูทั้งหมด
-app.get('/Reservation', async(req,res)=>{
-    try{
-     const respones = await axios.get(base_url + '/Reservation')
-     res.render("Reservation/booksss",{Reservation:respones.data})
-    }catch(err){
-     console.error(err)
-     res.status(500).send('Error')
-    }
- })
- //ดูทั้งหมด
- 
- //ดูแต่ละอัน
- app.get('/Reservation/:id',async(req,res)=>{
-     try{
-         const respones = await axios.get(base_url + '/Reservation/' + req.params.id)
-         res.render("Reservation/bookkk",{showtime:respones.data})
-        }catch(err){
-         console.error(err)
-         res.status(500).send('Error')
-        }
- })
- //ดูแต่ละอัน
-
- // show create desktop
- app.get('/Reservatio/create',(req,res)=>{ 
-     res.render("Reservation/create")
- })
- 
- app.post('/Reservatio/create',async(req,res)=>{
-    try{
-    const data = { Reservation_id: req.body.Reservation_id , Reservation_Date_Time: req.body.Reservation_Date_Time}
-     await axios.post(base_url + '/Reservation' ,data)
-     res.redirect('/Reservation')
-    }catch(err){
-     console.error(err)
-     res.status(500).send('Error')
-    }
- })
- // show create desktop
-
- //update
- app.get('/Reservation/update/:id',async(req,res)=>{
-     try{
-         const respones = await axios.get(
-             base_url + '/Reservation/' + req.params.id) 
-             res.render('Reservation/update',{Reservation: respones.data})
-   } catch(err){
-       console.error(err)
-       res.status(500).send('Error')
-     }
- })
- 
- app.post('/Reservation/update/:id',async(req,res)=>{
-    try{
-        const data = { Reservation_id: req.body.Reservation_id , Reservation_Date_Time: req.body.Reservation_Date_Time}
-     await axios.put(base_url + '/Reservation/' + req.params.id,data)
-     res.redirect('/Reservation')
-    }catch(err){
-     console.error(err)
-     res.status(500).send('Error')
-    }
- })
- //update
- 
- //delete
- app.get('/Reservatio/delete/:id',async(req,res)=>{
-    try{
-     await axios.delete(base_url + '/Reservation/' + req.params.id)
-     res.redirect('/Reservation')
-    }catch(err){
-     console.error(err)
-     res.status(500).send('Error')
-    }
- })
- //delete */
-
-app.listen(5500,()=> console.log(`Listening on port 5500`)) //เอาไว้บรรทัดสุดท้ายห้ามยุ่ง
+app.listen(5500,()=> console.log(`Listening on port 5500`))

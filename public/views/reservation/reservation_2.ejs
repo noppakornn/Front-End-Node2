@@ -3,29 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>การจองโต๊ะอาหาร</title>
-    <link rel="stylesheet" href="../css/style.css"/>
+    <title>แบบฟอร์มการจองโต๊ะ</title>
+    <link rel="stylesheet" href="../css/styles.css"/>
 </head>
 <body>
-    <h1>การจองโต๊ะอาหาร</h1>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Location</th>
-            <th>Action</th>
-        </tr>
-        <% for(var i=0; i < restaurant.length; i++) { %>
-            <tr>
-                <td><%= restaurant[i].name %></td>
-                <td><%= restaurant[i].location %></td>
-                <td>
-                    <a href="/restaurant/<%= restaurant[i].restaurant_id %>">View</a>
-                    <a href="/restaurant/update/<%= restaurant[i].restaurant_id %>">Edit</a>
-                    <a href="/restaurant/delete/<%= restaurant[i].restaurant_id %>">Delete</a>
-                </td>
-            </tr>
-        <% } %>
-    </table>
-    <a href="/restaurants/create">Create New restaurant</a>
+    <h1>แบบฟอร์มการจองโต๊ะ</h1>
+    <form action="/restaurant" method="post">
+        <div>
+            <label for="name">ชื่อ - นามสกุล:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+            <label for="email">อีเมล:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+            <label for="date">วันที่:</label>
+            <input type="date" id="date" name="date" required>
+        </div>
+        <div>
+            <label for="time">เวลา:</label>
+            <input type="time" id="time" name="time" required>
+        </div>
+        <div>
+            <label for="capacity">จำนวนคน:</label>
+            <input type="number" id="capacity" name="capacity" min="1" required>
+        </div>
+        <button type="submit">Submit Reservation</button>
+        <a href="/restaurant" class="button">Back to Menu</a>
+    </form>
 </body>
 </html>
