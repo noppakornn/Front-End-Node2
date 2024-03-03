@@ -122,7 +122,7 @@ app.get('/restaurant', async(req,res)=>{
  app.post('/reservations/create',async(req,res)=>{
     try{
      const data = { name: req.body.name , email: req.body.email , date: req.body.date , time: req.body.time , capacity: req.body.capacity}
-     await axios.post(base_url + '/reservation' ,data)
+     await axios.post(base_url + '/reservations' ,data)
      res.redirect('/reservation')
     }catch(err){
      res.status(500).send(err)
