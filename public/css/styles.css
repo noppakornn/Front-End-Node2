@@ -1,73 +1,98 @@
-/* ขอบกรอบของแบบฟอร์ม */
+/* สไตล์สำหรับหัวเรื่อง */
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+/* สไตล์สำหรับฟอร์มการจอง */
 form {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* ส่วนหัวเรื่องของแบบฟอร์ม */
-  h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  /* รายการข้อมูลในแบบฟอร์ม */
-  div {
-    margin-bottom: 20px;
-  }
-  
-  label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  input[type="text"],
-  input[type="email"],
-  input[type="date"],
-  input[type="time"],
-  input[type="number"],
-  textarea {
-    width: calc(100% - 10px);
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-  
-  textarea {
-    height: 100px;
-  }
-  
-  button[type="submit"] {
-    background-color: #007bff;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    text-align: center; /* เพิ่มคุณสมบัติ text-align: center; เพื่อจัดตำแหน่งปุ่มตรงกลาง */
-    display: block; /* เพิ่มคุณสมบัติ display: block; เพื่อให้ปุ่มเต็มความกว้าง */
-    margin: 0 auto; /* ใช้ margin: 0 auto; เพื่อจัดให้ปุ่มอยู่ตรงกลางของแบบฟอร์ม */
-  }
-  
-  button[type="submit"]:hover {
-    background-color: #0056b3;
-  }
-  
-  
-  a {
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-  
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+form div {
+  margin-bottom: 20px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="date"],
+form input[type="number"],
+form select {
+  width: calc(100% - 20px);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form select {
+  width: calc(100% - 22px);
+}
+
+/* สไตล์สำหรับปุ่มยืนยันการจอง */
+form button[type="submit"] {
+  width: calc(100% - 20px);
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  padding: 10px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* สไตล์สำหรับปุ่มกลับไปหน้าหลัก */
+/* สไตล์สำหรับปุ่มกลับไปหน้าหลัก */
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.button-container .button {
+  margin: 0 10px;
+}
+
+/* สไตล์สำหรับผลลัพธ์การจอง */
+#reservation-result {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+#reservation-result p {
+  margin: 5px 0;
+}
+
+.button {
+  display: inline-block;
+  background-color: #007bff;
+  color: #fff;
+  text-align: center;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}

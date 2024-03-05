@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>แบบฟอร์มการจองโต๊ะ</h1>
-    <form action="/reservations/create" method="post">
+    <form id="reservation-form" action="/reservations/create" method="post">
         <div>
             <label for="name">ชื่อ - นามสกุล:</label>
             <input type="text" id="name" name="name" required>
@@ -25,29 +25,213 @@
             <label for="time">เวลา:</label>
             <select id="time" name="time" required>
                 <option value="">โปรดเลือกเวลา</option>
-                <option value="10:00">10:00</option>
-                <option value="11:00">11:00</option>
-                <option value="12:00">12:00</option>
-                <option value="13:00">13:00</option>
-                <option value="14:00">14:00</option>
-                <option value="15:00">15:00</option>
-                <option value="16:00">16:00</option>
-                <option value="17:00">17:00</option>
-                <option value="18:00">18:00</option>
-                <option value="19:00">19:00</option>
-                <option value="20:00">20:00</option>
-                <option value="21:00">21:00</option>
+                <option value="11:30">11:30</option>
+                <option value="12:30">12:30</option>
+                <option value="13:30">13:30</option>
+                <option value="14:30">14:30</option>
+                <option value="15:30">15:30</option>
+                <option value="16:30">16:30</option>
+                <option value="17:30">17:30</option>
+                <option value="18:30">18:30</option>
+                <option value="19:30">19:30</option>
+                <option value="20:30">20:30</option>
+                <option value="21:30">21:30</option>
             </select>
         </div>
         <div>
             <label for="num_people">จำนวนคน:</label>
             <input type="number" id="num_people" name="num_people" min="1" required>
         </div>
+        <div>
+            <label for="table_num">โต๊ะ:</label>
+            <select id="table_num" name="table_num" required>
+                <option value="">โปรดเลือกโต๊ะ</option>
+                <option value="1">โต๊ะที่ 1</option>
+                <option value="2">โต๊ะที่ 2</option>
+                <option value="3">โต๊ะที่ 3</option>
+                <option value="4">โต๊ะที่ 4</option>
+                <option value="5">โต๊ะที่ 5</option>
+            </select>
+        </div>
         <button type="submit" value="create">ยืนยันการจอง</button>
-        <br>
-        <a href="/table" class="button">ตรวจสอบการจอง</a>
         <br>
         <a href="/restaurant" class="button">กลับไปหน้าหลัก</a>
     </form>
+    <div id="reservation-result"></div>
+    <script>
+        
+        // ข้อมูลโต๊ะ
+        const tables = [
+            { table_id: 1, table_num: 1, time: '11:30', status: 'ว่าง' },
+            { table_id: 1, table_num: 1, time: '12:30', status: 'ว่าง' },
+            { table_id: 1, table_num: 1, time: '13:30', status: 'ว่าง' },
+            { table_id: 1, table_num: 1, time: '14:30', status: 'ว่าง' },
+            { table_id: 1, table_num: 1, time: '15:30', status: 'ว่าง' },
+            { table_id: 1, table_num: 1, time: '16:30', status: 'ว่าง' },
+            { table_id: 1, table_num: 1, time: '17:30', status: 'ว่าง' },
+            { table_id: 1, table_num: 1, time: '18:30', status: 'ว่าง' },
+            { table_id: 1, table_num: 1, time: '19:30', status: 'ว่าง' },
+            { table_id: 1, table_num: 1, time: '20:30', status: 'ว่าง' },
+            { table_id: 1, table_num: 1, time: '21:30', status: 'ว่าง' },
+            { table_id: 2, table_num: 2, time: '11:30', status: 'ว่าง' },
+            { table_id: 2, table_num: 2, time: '12:30', status: 'ว่าง' },
+            { table_id: 2, table_num: 2, time: '13:30', status: 'ว่าง' },
+            { table_id: 2, table_num: 2, time: '14:30', status: 'ว่าง' },
+            { table_id: 2, table_num: 2, time: '15:30', status: 'ว่าง' },
+            { table_id: 2, table_num: 2, time: '16:30', status: 'ว่าง' },
+            { table_id: 2, table_num: 2, time: '17:30', status: 'ว่าง' },
+            { table_id: 2, table_num: 2, time: '18:30', status: 'ว่าง' },
+            { table_id: 2, table_num: 2, time: '19:30', status: 'ว่าง' },
+            { table_id: 2, table_num: 2, time: '20:30', status: 'ว่าง' },
+            { table_id: 2, table_num: 2, time: '21:30', status: 'ว่าง' },
+            { table_id: 3, table_num: 3, time: '11:30', status: 'ว่าง' },
+            { table_id: 3, table_num: 3, time: '12:30', status: 'ว่าง' },
+            { table_id: 3, table_num: 3, time: '13:30', status: 'ว่าง' },
+            { table_id: 3, table_num: 3, time: '14:30', status: 'ว่าง' },
+            { table_id: 3, table_num: 3, time: '15:30', status: 'ว่าง' },
+            { table_id: 3, table_num: 3, time: '16:30', status: 'ว่าง' },
+            { table_id: 3, table_num: 3, time: '17:30', status: 'ว่าง' },
+            { table_id: 3, table_num: 3, time: '18:30', status: 'ว่าง' },
+            { table_id: 3, table_num: 3, time: '19:30', status: 'ว่าง' },
+            { table_id: 3, table_num: 3, time: '20:30', status: 'ว่าง' },
+            { table_id: 3, table_num: 3, time: '21:30', status: 'ว่าง' },
+            { table_id: 4, table_num: 4, time: '11:30', status: 'ว่าง' },
+            { table_id: 4, table_num: 4, time: '12:30', status: 'ว่าง' },
+            { table_id: 4, table_num: 4, time: '13:30', status: 'ว่าง' },
+            { table_id: 4, table_num: 4, time: '14:30', status: 'ว่าง' },
+            { table_id: 4, table_num: 4, time: '15:30', status: 'ว่าง' },
+            { table_id: 4, table_num: 4, time: '16:30', status: 'ว่าง' },
+            { table_id: 4, table_num: 4, time: '17:30', status: 'ว่าง' },
+            { table_id: 4, table_num: 4, time: '18:30', status: 'ว่าง' },
+            { table_id: 4, table_num: 4, time: '19:30', status: 'ว่าง' },
+            { table_id: 4, table_num: 4, time: '20:30', status: 'ว่าง' },
+            { table_id: 4, table_num: 4, time: '21:30', status: 'ว่าง' },
+            { table_id: 5, table_num: 5, time: '11:30', status: 'ว่าง' },
+            { table_id: 5, table_num: 5, time: '12:30', status: 'ว่าง' },
+            { table_id: 5, table_num: 5, time: '13:30', status: 'ว่าง' },
+            { table_id: 5, table_num: 5, time: '14:30', status: 'ว่าง' },
+            { table_id: 5, table_num: 5, time: '15:30', status: 'ว่าง' },
+            { table_id: 5, table_num: 5, time: '16:30', status: 'ว่าง' },
+            { table_id: 5, table_num: 5, time: '17:30', status: 'ว่าง' },
+            { table_id: 5, table_num: 5, time: '18:30', status: 'ว่าง' },
+            { table_id: 5, table_num: 5, time: '19:30', status: 'ว่าง' },
+            { table_id: 5, table_num: 5, time: '20:30', status: 'ว่าง' },
+            { table_id: 5, table_num: 5, time: '21:30', status: 'ว่าง' },
+        ];
+
+// การจัดการฟอร์มการจอง
+document.getElementById('reservation-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // ป้องกันการส่งฟอร์ม
+
+    // รับค่าจากฟอร์ม
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const date = document.getElementById('date').value;
+    const time = document.getElementById('time').value;
+    const num_people = document.getElementById('num_people').value;
+    const table_num = document.getElementById('table_num').value;
+
+    // ค้นหาโต๊ะที่ถูกเลือก
+    const selectedTable = tables.find(table => table.table_num === parseInt(table_num) && table.time === time);
+
+    // ตรวจสอบสถานะของโต๊ะ
+    if (selectedTable && selectedTable.status === 'ว่าง') {
+        // โต๊ะว่าง ดำเนินการจอง
+
+        // ตรวจสอบว่ามีการจองที่ซ้ำกันหรือไม่
+        const duplicateReservation = tables.some(table => table.name === name && table.time === time);
+
+        if (!duplicateReservation) {
+            // ไม่มีการจองที่ซ้ำกัน ดำเนินการส่งข้อมูล
+
+            // สร้าง JSON object สำหรับข้อมูลการจอง
+            const reservationData = {
+                name: name,
+                email: email,
+                date: date,
+                time: time,
+                num_people: num_people,
+                table_num: table_num
+            };
+
+            fetch('/reservations/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(reservationData),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                const statusMessage = 'การจองสำเร็จ';
+                const resultDiv = document.getElementById('reservation-result');
+                const newContent = `
+                    <p>ชื่อ - นามสกุล: ${name}</p>
+                    <p>อีเมล: ${email}</p>
+                    <p>วันที่: ${date}</p>
+                    <p>เวลา: ${time}</p>
+                    <p>จำนวนคน: ${num_people}</p>
+                    <p>โต๊ะ: ${table_num}</p>
+                    <p>สถานะ: ${statusMessage}</p>
+                `;
+                resultDiv.innerHTML = newContent;
+                selectedTable.status = 'จองแล้ว';
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        } else {
+
+        }
+    } else {
+        alert('มีการจองที่เวลาเดียวกันแล้ว');
+    }
+});
+
+// การจัดการฟอร์มการจอง
+document.getElementById('reservation-form').addEventListener('submit', function(event) {
+    event.preventDefault(); // ป้องกันการส่งฟอร์ม
+
+    // รับค่าจากฟอร์ม
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const date = document.getElementById('date').value;
+    const time = document.getElementById('time').value;
+    const num_people = document.getElementById('num_people').value;
+    const table_num = document.getElementById('table_num').value;
+
+    // ค้นหาโต๊ะที่ถูกเลือก
+    const selectedTable = tables.find(table => table.table_num === parseInt(table_num) && table.time === time);
+
+    // ตรวจสอบสถานะของโต๊ะ
+    if (selectedTable && selectedTable.status === 'ว่าง') {
+        // โต๊ะว่าง ดำเนินการจอง
+        const statusMessage = 'การจองสำเร็จ';
+        const resultDiv = document.getElementById('reservation-result');
+
+        // ล้างข้อความเก่าออกก่อน
+        resultDiv.innerHTML = '';
+
+        // เปลี่ยนสถานะของโต๊ะเป็น "จองแล้ว"
+        selectedTable.status = 'จองแล้ว';
+
+        // แสดงข้อความใหม่
+        const newContent = `
+            <p>ชื่อ - นามสกุล: ${name}</p>
+            <p>อีเมล: ${email}</p>
+            <p>วันที่: ${date}</p>
+            <p>เวลา: ${time}</p>
+            <p>จำนวนคน: ${num_people}</p>
+            <p>โต๊ะ: ${table_num}</p>
+            <p>สถานะ: ${statusMessage}</p>
+        `;
+        resultDiv.innerHTML = newContent;
+    } else {
+        // ไม่พบโต๊ะที่ถูกเลือกหรือโต๊ะไม่ว่าง
+        alert('โต๊ะที่เลือกไม่ว่างหรือถูกจองแล้ว');
+    }
+});
+    </script>
 </body>
 </html>

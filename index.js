@@ -94,7 +94,7 @@ app.get('/restaurant', async(req,res)=>{
  app.get('/reservation', async(req,res)=>{
     try{
      const respones = await axios.get(base_url + '/reservation')
-     res.render("reservation/reservation_2",{reservation:respones.data})
+     res.render("reservation/reservation_1",{reservation:respones.data})
     }catch(err){
      console.error(err)
      res.status(500).send('Error')
@@ -106,7 +106,7 @@ app.get('/restaurant', async(req,res)=>{
  app.get('/reservation/:id',async(req,res)=>{
      try{
          const respones = await axios.get(base_url + '/reservation/' + req.params.id)
-         res.render("reservation/reservation_1",{reservation:respones.data})
+         res.render("reservation/reservation_2",{reservation:respones.data})
         }catch(err){
          console.error(err)
          res.status(500).send('Error')
@@ -121,7 +121,7 @@ app.get('/restaurant', async(req,res)=>{
 
  app.post('/reservations/create',async(req,res)=>{
     try{
-     const data = { name: req.body.name , email: req.body.email , date: req.body.date , time: req.body.time , num_people: req.body.num_people}
+     const data = { name: req.body.name , email: req.body.email , date: req.body.date , time: req.body.time , num_people: req.body.num_people, table_num: req.body.table_num}
      await axios.post(base_url + '/reservations' ,data)
      res.redirect('/reservation')
     }catch(err){
@@ -144,7 +144,7 @@ app.get('/restaurant', async(req,res)=>{
  
  app.post('/reservation/update/:id',async(req,res)=>{
     try{
-        const data = { name: req.body.name , email: req.body.email , date: req.body.date , time: req.body.time , num_people: req.body.num_people}
+        const data = { name: req.body.name , email: req.body.email , date: req.body.date , time: req.body.time , num_people: req.body.num_people, table_num: req.body.table_num}
      await axios.put(base_url + '/reservation/' + req.params.id,data)
      res.redirect('/reservation')
     }catch(err){
@@ -167,7 +167,7 @@ app.get('/restaurant', async(req,res)=>{
 
  app.get('/table', async(req,res)=>{
     try{
-     const respones = await axios.get(base_url + '/reservation')
+     const respones = await axios.get(base_url + '/table')
      res.render("table/table_2",{table:respones.data})
     }catch(err){
      console.error(err)
@@ -179,7 +179,7 @@ app.get('/restaurant', async(req,res)=>{
  //ดูแต่ละอัน
  app.get('/table/:id',async(req,res)=>{
      try{
-         const respones = await axios.get(base_url + '/reservation/' + req.params.id)
+         const respones = await axios.get(base_url + '/table/' + req.params.id)
          res.render("table/table_1",{table:respones.data})
         }catch(err){
          console.error(err)
@@ -195,7 +195,7 @@ app.get('/restaurant', async(req,res)=>{
 
  app.post('/tables/create',async(req,res)=>{
     try{
-     const data = { name: req.body.name , email: req.body.email , date: req.body.date , time: req.body.time , num_people: req.body.num_people}
+     const data = { status: req.body.status}
      await axios.post(base_url + '/tables' ,data)
      res.redirect('/table')
     }catch(err){
@@ -218,7 +218,7 @@ app.get('/restaurant', async(req,res)=>{
  
  app.post('/table/update/:id',async(req,res)=>{
     try{
-        const data = { name: req.body.name , email: req.body.email , date: req.body.date , time: req.body.time , num_people: req.body.num_people}
+        const data = { status: req.body.status}
      await axios.put(base_url + '/table/' + req.params.id,data)
      res.redirect('/table')
     }catch(err){
@@ -230,7 +230,7 @@ app.get('/restaurant', async(req,res)=>{
  
  app.get('/table/delete/:id',async(req,res)=>{
     try{
-     await axios.delete(base_url + '/reservation/delete/' + req.params.id)
+     await axios.delete(base_url + '/table/delete/' + req.params.id)
      res.redirect('/table')
     }catch(err){
      console.error(err)
