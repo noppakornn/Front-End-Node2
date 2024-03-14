@@ -94,7 +94,7 @@ app.get('/restaurant', async(req,res)=>{
  app.get('/reservation', async(req,res)=>{
     try{
      const respones = await axios.get(base_url + '/reservation')
-     res.render("reservation/reservation_1",{reservation:respones.data})
+     res.render("reservation/reservation_2",{reservation:respones.data})
     }catch(err){
      console.error(err)
      res.status(500).send('Error')
@@ -106,14 +106,14 @@ app.get('/restaurant', async(req,res)=>{
  app.get('/reservation/:id',async(req,res)=>{
      try{
          const respones = await axios.get(base_url + '/reservation/' + req.params.id)
-         res.render("reservation/reservation_2",{reservation:respones.data})
+         res.render("reservation/reservation_1",{reservation:respones.data})
         }catch(err){
          console.error(err)
          res.status(500).send('Error')
         }
  })
  //ดูแต่ละอัน
- 
+
  // show create desktop
  app.get('/reservations/create',(req,res)=>{ 
      res.render("reservation/create")

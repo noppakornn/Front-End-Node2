@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>รายละเอียดของร้าน</title>
-    <link rel="stylesheet" href="../css/stylex.css"/>
+    <link rel="stylesheet" href="../css/style.css"/>
 </head>
 <body>
+    <div class="menu">
+        <a href="/restaurant">หน้าหลัก</a>
+        <a href="/reservations/create">แบบฟอร์ม</a>
+        <a href="/reservation">ประวัติการจอง</a>
+    </div>
     <div class="container">
         <h1>รายละเอียดของร้าน <%= restaurant.nameres %></h1>
         <div class="restaurant-details">
@@ -15,7 +20,9 @@
             <p><strong>เวลาเปิด-ปิด: </strong> <%= restaurant.opening_hours %></p>
             <p><strong>ข้อมูลเพิ่มเติม: </strong> <%= restaurant.additional_info %></p>
         </div>
-        <a href="/reservation/1" class="back-btn">จองตอนนี้</a>
+        <a href="/reservations/create" class="back-btn">จองตอนนี้</a>
+        <br>
+        <a href="/restaurant" class="back-btn">กลับไปหน้าหลัก</a>
     </div>
 </body>
 </html>

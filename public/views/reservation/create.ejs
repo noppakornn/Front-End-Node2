@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบฟอร์มการจองโต๊ะ</title>
+    <link rel="stylesheet" href="../css/style.css"/>
+</head>
+<body>
+    <div class="menu">
+        <a href="/restaurant">หน้าหลัก</a>
+        <a href="/reservations/create">แบบฟอร์ม</a>
+        <a href="/reservation">ประวัติการจอง</a>
+    </div>
+    <h1>แบบฟอร์มการจองโต๊ะ</h1>
+    <form id="reservation-form" action="/reservations/create" method="post">
+        <div>
+            <label for="name">ชื่อ - นามสกุล:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+            <label for="email">อีเมล:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+            <label for="date">วันที่:</label>
+            <input type="date" id="date" name="date" required>
+        </div>
+        <div>
+            <label for="time">เวลา:</label>
+            <select id="time" name="time" required>
+                <option value="">โปรดเลือกเวลา</option>
+                <option value="11:30">11:30</option>
+                <option value="12:30">12:30</option>
+                <option value="13:30">13:30</option>
+                <option value="14:30">14:30</option>
+                <option value="15:30">15:30</option>
+                <option value="16:30">16:30</option>
+                <option value="17:30">17:30</option>
+                <option value="18:30">18:30</option>
+                <option value="19:30">19:30</option>
+                <option value="20:30">20:30</option>
+                <option value="21:30">21:30</option>
+            </select>
+        </div>
+        <div>
+            <label for="num_people">จำนวนคน:</label>
+            <input type="number" id="num_people" name="num_people" min="1" required>
+        </div>
+        <div>
+            <label for="table_num">โต๊ะ:</label>
+            <select id="table_num" name="table_num" required>
+                <option value="">โปรดเลือกโต๊ะ</option>
+                <option value="1">โต๊ะที่ 1</option>
+                <option value="2">โต๊ะที่ 2</option>
+                <option value="3">โต๊ะที่ 3</option>
+                <option value="4">โต๊ะที่ 4</option>
+                <option value="5">โต๊ะที่ 5</option>
+            </select>
+        </div>        
+        <button type="submit" value="create">ยืนยันการจอง</button>
+        <br><br>
+        <a href="/restaurant" class="button">กลับไปหน้าหลัก</a>
+    </form> 
+</body>
+</html>
