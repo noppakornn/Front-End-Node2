@@ -1,9 +1,9 @@
 document.getElementById('loginForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    
+
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-    
+
     try {
         const response = await fetch('/login', {
             method: 'POST',
@@ -12,9 +12,9 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
             },
             body: JSON.stringify({ username, password })
         });
-        
+
         const data = await response.json();
-        
+
         if (response.ok) {
             // ล็อกอินสำเร็จ
             alert('Login successful!');
