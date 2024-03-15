@@ -6,7 +6,6 @@ var bodyParser = require('body-parser')
 
 //const base_url = "http://localhost:3000";
 const base_url = "http://10.104.4.235:3000";
-//const base_url = "http://node58143-noderestjame.proen.app.ruk-com.cloud:11713";
 
 app.set('views', path.join(__dirname, "/public/views"))
 app.set('view engine', 'ejs')
@@ -14,6 +13,22 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended:false}))
 
 app.use(express.static(__dirname + '/public'))
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// POST route for handling login
+app.post("/login", (req, res) => {
+    const { username, password } = req.body;
+
+    // ตรวจสอบข้อมูลล็อกอิน (อย่าลืมใส่ตรวจสอบจริง ๆ ในโค้ดจริง)
+    if (username === "admin" && password === "password") {
+        // ล็อกอินสำเร็จ
+        res.redirect("/dashboard"); // เปลี่ยนเส้นทางไปยังหน้า Dashboard หรือหน้าที่ต้องการ
+    } else {
+        // ล็อกอินไม่สำเร็จ
+        res.redirect("/login"); // เปลี่ยนเส้นทางกลับไปยังหน้า Login อีกครั้ง
+    }
+})
 
 //ดูทั้งหมด
 app.get('/restaurant', async(req,res)=>{
